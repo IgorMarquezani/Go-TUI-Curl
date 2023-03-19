@@ -150,7 +150,7 @@ func main() {
 	responseBodyView.SetScrollable(true)
 	responseBodyView.SetBorder(true).SetTitle("Response Body")
 	responseBodyView.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Rune() == 'q' || event.Key() == tcell.KeyCtrlL {
+		if event.Rune() == 'q' || event.Key() == tcell.KeyCtrlR {
 			app.SetFocus(form)
 		}
 		return event
@@ -158,7 +158,7 @@ func main() {
 
 	form = StartRequestForm()
 	form.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Key() == tcell.KeyCtrlR {
+		if event.Key() == tcell.KeyCtrlL {
 			app.SetFocus(responseBodyView)
 		}
 		return event
