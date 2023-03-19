@@ -8,6 +8,6 @@ Type CTRL + R for going to the right panel
 
 Type CTRL + L for going to the left panel
 
-Type 'q' on the left panel to get back to the right panel
+Type 'q' on the right panel to get back to the left panel
 
 Press Enter in the bottom buttons as well as the dropdown method menu to execute it
