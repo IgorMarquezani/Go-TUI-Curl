@@ -86,9 +86,14 @@ func StartRequestForm() *tview.Form {
 
 	form.AddFormItem(dropDown)
 	// Item 3
-	form.AddTextArea("Body:", "", 80, 16, 80*16, func(text string) {
-		requestForm.Body = []byte(text)
-	})
+  BodyTextArea := tview.NewTextArea()
+  BodyTextArea.SetLabel("Body:")
+  BodyTextArea.SetSize(16, 80)
+  BodyTextArea.SetMaxLength(80*16)
+  BodyTextArea.SetChangedFunc(func() {
+    requestForm.Body = []byte(BodyTextArea.GetText())
+  })
+  form.AddFormItem(BodyTextArea)
 
 	// Buttons does not count as items
 	form.AddButton("Make Request", func() {
@@ -150,15 +155,16 @@ func main() {
 	responseBodyView.SetScrollable(true)
 	responseBodyView.SetBorder(true).SetTitle("Response Body")
 	responseBodyView.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Rune() == 'q' || event.Key() == tcell.KeyCtrlR {
+		if event.Rune() == 'q' || event.Key() == tcell.KeyCtrlL {
 			app.SetFocus(form)
 		}
 		return event
 	})
 
 	form = StartRequestForm()
+  form.SetBorder(true)
 	form.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Key() == tcell.KeyCtrlL {
+		if event.Key() == tcell.KeyCtrlR {
 			app.SetFocus(responseBodyView)
 		}
 		return event
